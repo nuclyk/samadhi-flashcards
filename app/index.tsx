@@ -1,37 +1,28 @@
 import { Link } from "expo-router";
 import { useState } from "react";
-import { FlatList, TextInput, Pressable, Text, View } from "react-native";
-import Input from "../components/Input";
+import {
+  FlatList,
+  TextInput,
+  Pressable,
+  Text,
+  View,
+  SafeAreaView,
+} from "react-native";
+import Search from "../components/Search";
+import DeckList from "../components/DeckList";
 
 export default function Index() {
+  const [decks, setDecks] = useState(initialDecks);
   const [deckName, setDeckName] = useState("testing");
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Input value={deckName} onChange={setDeckName}></Input>
-      <FlatList
-        data={decks}
-        renderItem={({ item: { id, name, details, cards }, index }) => (
-          <Link href={"/deck/" + id} asChild>
-            <Pressable>
-              <Text>
-                {name} | Due: {details.due} | New: {details.new} | Total:{" "}
-                {details.total}
-              </Text>
-            </Pressable>
-          </Link>
-        )}
-      />
-    </View>
+    <SafeAreaView>
+      <Search value={deckName} onChange={setDeckName}></Search>
+      <DeckList decks={decks}></DeckList>
+    </SafeAreaView>
   );
 }
 
-const decks = [
+const initialDecks = [
   {
     id: 1,
     name: "Robotics",
