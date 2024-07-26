@@ -1,5 +1,6 @@
 import { StyleSheet, TextInput, View } from "react-native";
 import Button from "./Button";
+import { colors } from "@/constants/Colors";
 
 export default function Search({ value, onChange }) {
   return (
@@ -19,9 +20,11 @@ const styles = StyleSheet.create({
   container: {
     width: "100vw",
     justifyContent: "center",
+    backgroundColor: colors["grey-dark"],
+    padding: 10
   },
   input: {
-    backgroundColor: "#e0e1dd",
+    backgroundColor: 'white',
     padding: 5,
     paddingLeft: 10,
     height: 40,

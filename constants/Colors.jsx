@@ -1,15 +1,13 @@
 export const colors = {
-    primary : 
-    {
-      'color-50': '#e5f5ff',
-      'color-100': '#c9dbe9',
-      'color-200': '#aac1d3',
-      'color-300': '#8ba8c0',
-      'color-400': '#6c8fad',
-      'color-500': '#527593',
-      'color-600': '#3f5b74',
-      'color-700': '#2b4154',
-      'color-800': '#162735',
-      'color-900': '#000f18',
-    }
+      'grey-dark': '#3D3D3D',
+      'grey-medium': '#D1D1D6',
+      'grey-light': '#F2F2F7',
+      lightorange: '#feb036',
+      orange: '#e55020',
+      blue: '#05d4e2',
+      darkblue: '#062d6f',
+      purple: '#8e4c92',
+      red: '#db082d',
+      pink: '#fa7fe1',
+      white: 'white'
 }

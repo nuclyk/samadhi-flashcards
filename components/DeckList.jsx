@@ -8,16 +8,29 @@ export default function DeckList({ decks }) {
       <FlatList
         keyExtractor={(item) => item.id}
         data={decks}
-        renderItem={({ item }) => (
+        renderItem={({ item, index }) => (
           <>
-            <View style={styles.deck}>
+            <View
+              style={[
+                styles.deck,
+                index % 2
+                  ? { backgroundColor: colors["grey-light"] }
+                  : { backgroundColor: colors.white },
+              ]}
+            >
               <View style={styles.title}>
-                <Text style={{fontSize: 20}}>{item.name}</Text>
+                <Text style={{ fontSize: 18, color: colors.background }}>{item.name}</Text>
               </View>
               <View style={styles.details}>
-                <Text>Due: {item.details.due}</Text>
-                <Text>New: {item.details.new}</Text>
-                <Text>Total: {item.details.total}</Text>
+                <View style={[styles.square, { backgroundColor: colors.orange }]}>
+                  <Text style={{color: 'white'}}>Due: {item.details.due}</Text>
+                </View>
+                <View style={[styles.square, { backgroundColor: colors.blue }]}>
+                  <Text style={{color: 'white'}}>New: {item.details.new}</Text>
+                </View>
+                <View style={[styles.square, { backgroundColor: colors.purple }]}>
+                  <Text style={{color: 'white'}}>Total: {item.details.total}</Text>
+                </View>
               </View>
             </View>
           </>
@@ -30,29 +43,34 @@ export default function DeckList({ decks }) {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    justifyContent: 'center',
-    alignContent: 'center',
-  },
-  deck: {
-    flex:1,
-    borderColor: colors.primary["color-500"],
-    borderWidth: 1,
-    margin: 10,
-    padding: 20,
     justifyContent: "center",
     alignContent: "center",
-    borderRadius: 5
+  },
+  deck: {
+    backgroundColor: "white",
+    flex: 1,
+    padding: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: colors["grey-medium"]
   },
   title: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignContent: 'center',
-    marginBottom: 15
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignContent: "center",
+    marginBottom: 15,
   },
   details: {
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    alignContent: 'center'
-  }
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignContent: "center",
+  },
+  square: {
+    justifyContent: "center",
+    alignContent: "center",
+    borderRadius: 5,
+    padding: 5,
+    minWidth: 25,
+    marginRight: 5,
+  },
 });
