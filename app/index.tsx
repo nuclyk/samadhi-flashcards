@@ -1,7 +1,10 @@
 import { Link } from "expo-router";
-import { FlatList, Pressable, Text, View } from "react-native";
+import { useState } from "react";
+import { FlatList, TextInput, Pressable, Text, View } from "react-native";
+import Input from "../components/Input";
 
 export default function Index() {
+  const [deckName, setDeckName] = useState("testing");
   return (
     <View
       style={{
@@ -10,6 +13,7 @@ export default function Index() {
         alignItems: "center",
       }}
     >
+      <Input value={deckName} onChange={setDeckName}></Input>
       <FlatList
         data={decks}
         renderItem={({ item: { id, name, details, cards }, index }) => (
