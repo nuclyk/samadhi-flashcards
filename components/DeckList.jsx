@@ -12,27 +12,34 @@ import { Link } from "expo-router";
 
 export default function DeckList({ decks, filter }) {
   return (
-    <View style={styles.container}>
-      <FlatList
-        keyExtractor={(item) => item.id}
-        // Search for a deck by the filter param
-        data={decks.filter((deck) => deck.name.includes(filter))}
-        renderItem={({ item, index }) => (
-          <Pressable
-            style={[
-              styles.deck,
-              index % 2
-                ? { backgroundColor: colors["grey-light"] }
-                : { backgroundColor: colors.white },
-            ]}
-          >
+    <FlatList
+      keyExtractor={(item) => item.id}
+      // Search for a deck by the filter param
+      data={decks.filter((deck) => deck.name.includes(filter))}
+      renderItem={({ item, index }) => (
+        <Link
+          push
+          style={[
+            styles.deck,
+            index % 2
+              ? { backgroundColor: colors["grey-light"] }
+              : { backgroundColor: colors.white },
+          ]}
+          // asChild allows to have something different as a link than only text
+          asChild
+          href={{
+            pathname: "/deck/[id]",
+            params: { id: item.id },
+          }}
+        >
+          <Pressable>
             <View style={styles.title}>
               <Text
                 style={{ fontSize: 15, color: colors.background }}
                 numberOfLines={1}
                 ellipsizeMode="tail"
               >
-                <Link href={"/deck/" + item.id}>{item.name}</Link>
+                {item.name}
               </Text>
             </View>
             <View style={styles.details}>
@@ -47,14 +54,13 @@ export default function DeckList({ decks, filter }) {
               </View>
             </View>
           </Pressable>
-        )}
-      />
-    </View>
+        </Link>
+      )}
+    />
   );
 }
 
 const styles = StyleSheet.create({
-  container: { width: "100%" },
   deck: {
     backgroundColor: "white",
     padding: 20,
