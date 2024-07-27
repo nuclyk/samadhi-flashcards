@@ -1,5 +1,5 @@
 import { Link } from "expo-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   FlatList,
   TextInput,
@@ -13,11 +13,19 @@ import DeckList from "../components/DeckList";
 
 export default function Index() {
   const [decks, setDecks] = useState(initialDecks);
-  const [deckName, setDeckName] = useState("");
+  const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    function loadData() {
+      setDecks(initialDecks);
+    }
+    loadData();
+  }, [initialDecks]);
+
   return (
     <SafeAreaView>
-      <Search value={deckName} onChange={setDeckName}></Search>
-      <DeckList decks={decks}></DeckList>
+      <Search setQuery={setQuery}></Search>
+      <DeckList decks={decks} filter={query}></DeckList>
     </SafeAreaView>
   );
 }
@@ -25,7 +33,7 @@ export default function Index() {
 const initialDecks = [
   {
     id: 1,
-    name: "Robotics",
+    name: "RRboticsRboticsRboticsRboticsRboticsRboticsRboticsRboticsRboticsRboticsRboticsRboticsRboticsRboticsbotics",
     details: { due: 5, new: 10, total: 15 },
     cards: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
   },
