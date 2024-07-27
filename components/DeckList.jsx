@@ -15,7 +15,8 @@ export default function DeckList({ decks, filter }) {
     <View style={styles.container}>
       <FlatList
         keyExtractor={(item) => item.id}
-        data={decks.filter((deck) => deck.name.startsWith(filter))}
+        // Search for a deck by the filter param
+        data={decks.filter((deck) => deck.name.includes(filter))}
         renderItem={({ item, index }) => (
           <Pressable
             style={[
@@ -31,7 +32,7 @@ export default function DeckList({ decks, filter }) {
                 numberOfLines={1}
                 ellipsizeMode="tail"
               >
-                <Link href="/deck/1">{item.name}</Link>
+                <Link href={"/deck/" + item.id}>{item.name}</Link>
               </Text>
             </View>
             <View style={styles.details}>
