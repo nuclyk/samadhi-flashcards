@@ -1,15 +1,8 @@
 import { Link } from "expo-router";
 import { useEffect, useState } from "react";
-import {
-  FlatList,
-  TextInput,
-  Pressable,
-  Text,
-  View,
-  SafeAreaView,
-} from "react-native";
+import { SafeAreaView } from "react-native";
 import Search from "../components/Search";
-import DeckList from "../components/DeckList";
+import Decks from "../components/Decks";
 import { initialDecks } from "../mock/data";
 
 export default function Index() {
@@ -26,7 +19,7 @@ export default function Index() {
   return (
     <SafeAreaView>
       <Search setQuery={setQuery}></Search>
-      <DeckList decks={decks} filter={query}></DeckList>
+      <Decks decks={decks} filter={query}></Decks>
     </SafeAreaView>
   );
 }
