@@ -1,14 +1,18 @@
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, SafeAreaView } from "react-native";
 import { useLocalSearchParams } from "expo-router";
+import { Stack } from "expo-router";
 import Card from "@/components/Card";
 
-export default function Review() {
-  const { id } = useLocalSearchParams();
+export default function ReviewScreen() {
+  const { id, deckName } = useLocalSearchParams();
 
   return (
-    <View style={styles.container}>
-      <Card />
-    </View>
+    <>
+      <Stack.Screen options={{ title: "Review " + deckName }} />
+      <SafeAreaView style={styles.container}>
+        <Card />
+      </SafeAreaView>
+    </>
   );
 }
 

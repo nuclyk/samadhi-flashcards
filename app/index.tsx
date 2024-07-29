@@ -5,7 +5,7 @@ import Search from "../components/Search";
 import Decks from "../components/Decks";
 import { initialDecks } from "../mock/data";
 
-export default function Index() {
+export default function HomeScreen() {
   const [decks, setDecks] = useState(initialDecks);
   const [query, setQuery] = useState("");
 
