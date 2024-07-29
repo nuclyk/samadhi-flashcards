@@ -1,6 +1,6 @@
 import { useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
-import { View, Text, StyleSheet, SafeAreaView } from "react-native";
+import { View, Text, StyleSheet, SafeAreaView, Pressable } from "react-native";
 import initialCards from "../../mock/cards2.json";
 import { initialDecks } from "@/mock/data";
 import { FlashList } from "@shopify/flash-list";
@@ -38,7 +38,6 @@ export default function DeckScreen() {
     }
 
     const deck = getDeck(id);
-
     let fc = deck?.cards;
 
     let list = initialCards.filter((card, index) => {
@@ -68,9 +67,6 @@ export default function DeckScreen() {
               </Text>
             </View>
             <View style={styles.options}>
-              <Link asChild href={{ pathname: "/review/", params: { id: id } }}>
-                <Text>Review</Text>
-              </Link>
               <Link href="">
                 <Text>Edit</Text>
               </Link>
