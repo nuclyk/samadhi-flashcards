@@ -1,12 +1,13 @@
 import { FlatList, Text, View, StyleSheet, Pressable } from "react-native";
 import { colors } from "../constants/Colors";
 import { Link } from "expo-router";
+import ButtonLink from "./ButtonLink";
 
 export default function Decks({ decks, filter }) {
   return (
     <FlatList
       keyExtractor={(item) => item.id}
-      // Search for a deck by the filter param
+      // Search for a deck by the filter prop
       data={decks.filter((deck) => deck.name.includes(filter))}
       renderItem={({ item, index }) => (
         <View
@@ -27,6 +28,9 @@ export default function Decks({ decks, filter }) {
                 {item.name}
               </Text>
             </View>
+
+            {/* --------------------- DUE, NEW, TOTAL LABELS--------------------- */}
+
             <View style={styles.details}>
               <View style={[styles.square, { backgroundColor: colors.orange }]}>
                 <Text style={styles.text}>Due: {item.details.due}</Text>
@@ -43,38 +47,18 @@ export default function Decks({ decks, filter }) {
           {/* --------------------- EDIT BUTTON --------------------- */}
 
           <View>
-            <Link
-              push
-              // asChild allows to have something different as a link than only text
-              asChild
-              href={{
-                pathname: "/deck/[id]",
-                params: { id: item.id },
-              }}
-            >
-              <Pressable>
-                <Text>EDIT</Text>
-              </Pressable>
-            </Link>
+            <ButtonLink value='Edit' path='/deck/[id]' params={{ id: item.id }} />
           </View>
 
           {/* --------------------- REVIEW BUTTON --------------------- */}
 
           <View>
-            <Link
-              asChild
-              href={{
-                pathname: "/review/",
-                params: { id: item.id, deckName: item.name },
-              }}
-            >
-              <Pressable>
-                <Text>REVIEW</Text>
-              </Pressable>
-            </Link>
+            <ButtonLink value='Review' path='/review/'
+              params={{ id: item.id, deckName: item.name }} />
           </View>
-        </View>
-      )}
+        </View >
+      )
+      }
     />
   );
 }
@@ -90,6 +74,7 @@ const styles = StyleSheet.create({
     borderBottomColor: colors["grey-medium"],
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: 'space-between'
   },
   title: {
     marginBottom: 15,
