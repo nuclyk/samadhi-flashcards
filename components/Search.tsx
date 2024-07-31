@@ -2,7 +2,7 @@ import { StyleSheet, TextInput, View } from "react-native";
 import ButtonLink from "./ButtonLink";
 import { colors } from "@/constants/Colors";
 
-export default function Search({ setQuery }) {
+export default function Search({ setQuery }: any) {
   return (
     <>
       <View style={styles.container}>
@@ -20,6 +20,7 @@ export default function Search({ setQuery }) {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     justifyContent: "center",
     backgroundColor: colors["grey-dark"],
     padding: 10,

@@ -44,17 +44,19 @@ export default function Decks({ decks, filter }) {
             </View>
           </View>
 
-          {/* --------------------- EDIT BUTTON --------------------- */}
+          <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', flex: 1 }}>
+            {/* --------------------- EDIT BUTTON --------------------- */}
 
-          <View>
-            <ButtonLink value='Edit' path='/deck/[id]' params={{ id: item.id }} />
-          </View>
+            <View>
+              <ButtonLink value='Edit' path='/deck/[id]' params={{ id: item.id }} />
+            </View>
 
-          {/* --------------------- REVIEW BUTTON --------------------- */}
+            {/* --------------------- REVIEW BUTTON --------------------- */}
 
-          <View>
-            <ButtonLink value='Review' path='/review/'
-              params={{ id: item.id, deckName: item.name }} />
+            <View>
+              <ButtonLink value='Review' path='/review/'
+                params={{ id: item.id, deckName: item.name }} />
+            </View>
           </View>
         </View >
       )
@@ -74,7 +76,6 @@ const styles = StyleSheet.create({
     borderBottomColor: colors["grey-medium"],
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: 'space-between'
   },
   title: {
     marginBottom: 15,

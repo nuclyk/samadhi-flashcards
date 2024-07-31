@@ -5,7 +5,8 @@ import { Link } from "expo-router";
 type Button = {
   value: string;
   path: string;
-  params: any
+  params?: any
+  width?: number
 }
 
 export default function ButtonLink({ value, path, params }: Button) {

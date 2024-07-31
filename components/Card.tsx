@@ -8,15 +8,10 @@ type Card = {
   question: string;
   answer: string;
   date: string;
+  due: boolean
 };
 
-export default function Card() {
-  const [card, setCard] = useState<Card>({
-    id: 0,
-    question: "initial question",
-    answer: "initial answer",
-    date: new Date().toDateString(),
-  });
+export default function Card({ id, question, answer, due, date }: Card) {
   const [show, setShow] = useState(false);
 
   if (!show) {
@@ -24,7 +19,7 @@ export default function Card() {
       <View style={styles.container}>
         <Pressable onPress={() => setShow(!show)}>
           <View style={styles.questionBox}>
-            <Text style={styles.h1}>{card.question}</Text>
+            <Text style={styles.h1}>{question}</Text>
             <Text style={styles.h2}>Press to see answer</Text>
           </View>
         </Pressable>
@@ -35,7 +30,7 @@ export default function Card() {
       <View style={[styles.container, { flexDirection: "column" }]}>
         <Pressable onPress={() => setShow(!show)}>
           <View style={styles.answerBox}>
-            <Text style={styles.h1}>Photoaxis is ...</Text>
+            <Text style={styles.h1}>{answer}</Text>
           </View>
         </Pressable>
         <View
