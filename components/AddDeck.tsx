@@ -1,25 +1,17 @@
+import { useDecksDispatch } from "@/context/DecksContext"
+import { StyleSheet, Pressable, View, Text } from "react-native";
 import { colors } from "@/constants/Colors";
-import { useDecksDispatch } from "@/context/DecksContext";
-import { Pressable, View, Text, StyleSheet } from "react-native";
 
-type Button = {
-    text: string;
-    onPress?: any
-    width?: number
-}
-
-export default function Button({ text, onPress, width }: Button) {
+export default function AddDeck({ width, deckName, text }: any) {
     const dispatch = useDecksDispatch()
-
     return (
-        <Pressable style={[styles.container, { width: width }]} onPress={onPress}>
+        <Pressable style={[styles.container, { width: width }]} onPress={() => dispatch({ type: 'added', name: deckName })}>
             <View >
                 <Text style={{ color: colors.white }}>{text}</Text>
             </View>
         </Pressable>
     )
 }
-
 
 const styles = StyleSheet.create({
     container: {

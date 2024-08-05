@@ -7,37 +7,32 @@ import { FlashList } from "@shopify/flash-list";
 import { colors } from "@/constants/Colors";
 import { Stack } from "expo-router";
 import { Link } from "expo-router";
+import { DeckModel } from "@/models/DeckModel";
+import { CardModel } from "@/models/CardModel"
 
-type Deck = {
-  id: number;
-  name: string;
-  details: {
-    due: number;
-    new: number;
-    total: number;
-  };
-  cards: number[];
-};
-
-type Card = {
-  id: number;
-  question: string;
-  answer: string;
-  due: boolean;
-  date: string;
-};
+let initialDeck: DeckModel = {
+  id: 999,
+  name: 'Initial deck',
+  details: { due: 0, new: 0, total: 0 },
+  cards: []
+}
 
 export default function DeckScreen() {
-  const [deck, setDeck] = useState<Deck | object>({});
-  const [cards, setCards] = useState<Card[]>([]);
+  const [deck, setDeck] = useState<DeckModel>(initialDeck);
+  const [cards, setCards] = useState<CardModel[]>([]);
   const { id } = useLocalSearchParams();
 
   useEffect(() => {
-    function getDeck(id: any) {
-      return initialDecks.find((deck) => deck.id == id);
+    function getDeck(id: any): DeckModel {
+      try {
+        return initialDecks.find((deck) => deck.id == id);
+      } catch (error) {
+        console.log(`The card with id ${id} does not exist.`)
+      }
+      return initialDeck
     }
 
-    const deck = getDeck(id);
+    const deck: DeckModel = getDeck(id);
     let fc = deck?.cards;
 
     let list = initialCards.filter((card, index) => {
