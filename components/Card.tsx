@@ -8,7 +8,7 @@ type Card = {
   question: string;
   answer: string;
   date: string;
-  due: boolean
+  due: boolean;
 };
 
 export default function Card({ id, question, answer, due, date }: Card) {

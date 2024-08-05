@@ -3,11 +3,11 @@ import { colors } from "../constants/Colors";
 import { Link } from "expo-router";
 import ButtonLink from "./ButtonLink";
 import Button from "./Button";
-import { useDecks } from "@/context/DecksContext";
+import { useDecks, useDecksDispatch } from "@/context/DecksContext";
 
 export default function DecksList({ filter }: any) {
-
-  const decks = useDecks()
+  const decks = useDecks();
+  const dispatch = useDecksDispatch();
 
   return (
     <FlatList
@@ -49,24 +49,44 @@ export default function DecksList({ filter }: any) {
             </View>
           </View>
 
-          <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', flex: 1 }}>
-            {/* --------------------- EDIT BUTTON --------------------- */}
-
-            <View>
-              <ButtonLink value='Edit' path='/deck/[id]' params={{ id: item.id }} />
-            </View>
-
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-evenly",
+              flex: 1,
+            }}
+          >
             {/* --------------------- REVIEW BUTTON --------------------- */}
 
             <View>
-              <ButtonLink value='Review' path='/review/'
-                params={{ id: item.id, deckName: item.name }} />
+              <ButtonLink
+                value="Review"
+                path="/review/"
+                params={{ id: item.id, deckName: item.name }}
+              />
             </View>
 
+            {/* --------------------- EDIT BUTTON --------------------- */}
+
+            <View>
+              <ButtonLink
+                value="Edit"
+                path="/deck/[id]"
+                params={{ id: item.id }}
+              />
+            </View>
+
+            {/* --------------------- DELETE BUTTON --------------------- */}
+
+            <View>
+              <Button
+                text="Delete"
+                onPress={() => dispatch({ type: "delete", id: item.id })}
+              ></Button>
+            </View>
           </View>
-        </View >
-      )
-      }
+        </View>
+      )}
     />
   );
 }

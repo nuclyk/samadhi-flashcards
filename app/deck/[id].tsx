@@ -8,14 +8,14 @@ import { colors } from "@/constants/Colors";
 import { Stack } from "expo-router";
 import { Link } from "expo-router";
 import { DeckModel } from "@/models/DeckModel";
-import { CardModel } from "@/models/CardModel"
+import { CardModel } from "@/models/CardModel";
 
 let initialDeck: DeckModel = {
   id: 999,
-  name: 'Initial deck',
+  name: "Initial deck",
   details: { due: 0, new: 0, total: 0 },
-  cards: []
-}
+  cards: [],
+};
 
 export default function DeckScreen() {
   const [deck, setDeck] = useState<DeckModel>(initialDeck);
@@ -27,9 +27,9 @@ export default function DeckScreen() {
       try {
         return initialDecks.find((deck) => deck.id == id);
       } catch (error) {
-        console.log(`The card with id ${id} does not exist.`)
+        console.log(`The card with id ${id} does not exist.`);
       }
-      return initialDeck
+      return initialDeck;
     }
 
     const deck: DeckModel = getDeck(id);

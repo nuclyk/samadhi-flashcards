@@ -1,5 +1,5 @@
-import { DecksProvider } from '@/context/DecksContext';
-import { Stack } from 'expo-router/stack';
+import { DecksProvider } from "@/context/DecksContext";
+import { Stack } from "expo-router/stack";
 
 export default function Layout() {
   return (

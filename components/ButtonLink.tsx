@@ -5,9 +5,9 @@ import { Link } from "expo-router";
 type Button = {
   value: string;
   path: string;
-  params?: any
-  width?: number
-}
+  params?: any;
+  width?: number;
+};
 
 export default function ButtonLink({ value, path, params }: Button) {
   return (
@@ -16,13 +16,13 @@ export default function ButtonLink({ value, path, params }: Button) {
       asChild
       href={{
         pathname: path,
-        params: params
+        params: params,
       }}
     >
       <Pressable style={styles.container}>
         <Text style={{ color: colors["grey-light"] }}>{value}</Text>
       </Pressable>
-    </Link >
+    </Link>
   );
 }
 

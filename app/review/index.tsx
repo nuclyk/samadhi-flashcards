@@ -2,7 +2,7 @@ import { Text, View, StyleSheet, SafeAreaView } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import { Stack } from "expo-router";
 import Card from "@/components/Card";
-import cards from '../../mock/cards2.json'
+import cards from "../../mock/cards2.json";
 import { FlashList } from "@shopify/flash-list";
 
 export default function ReviewScreen() {
@@ -12,10 +12,11 @@ export default function ReviewScreen() {
     <>
       <Stack.Screen options={{ title: "Review " + deckName }} />
       <SafeAreaView style={styles.container}>
-        <FlashList data={cards.filter(card => card.due === true)}
+        <FlashList
+          data={cards.filter((card) => card.due === true)}
           estimatedItemSize={cards.length}
-          renderItem={({ item, index }) => (
-            <Card {...item} />)} />
+          renderItem={({ item, index }) => <Card {...item} />}
+        />
       </SafeAreaView>
     </>
   );
