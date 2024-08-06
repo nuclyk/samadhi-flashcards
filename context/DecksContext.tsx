@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 import initialDecks from "@/mock/decks.json";
 import { DeckModel } from "@/models/DeckModel";
 

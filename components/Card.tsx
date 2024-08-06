@@ -2,16 +2,9 @@ import { useState } from "react";
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import Button from "./ButtonLink";
 import { colors } from "@/constants/Colors";
+import { CardModel } from "@/models/CardModel";
 
-type Card = {
-  id: number;
-  question: string;
-  answer: string;
-  date: string;
-  due: boolean;
-};
-
-export default function Card({ id, question, answer, due, date }: Card) {
+export default function Card({ id, question, answer, due, date }: CardModel) {
   const [show, setShow] = useState(false);
 
   if (!show) {

@@ -1,6 +1,5 @@
 import { FlatList, Text, View, StyleSheet, Pressable } from "react-native";
 import { colors } from "../constants/Colors";
-import { Link } from "expo-router";
 import ButtonLink from "./ButtonLink";
 import Button from "./Button";
 import { useDecks, useDecksDispatch } from "@/context/DecksContext";
@@ -61,7 +60,7 @@ export default function DecksList({ filter }: any) {
             <View>
               <ButtonLink
                 value="Review"
-                path="/review/"
+                path="/review/[id]"
                 params={{ id: item.id, deckName: item.name }}
               />
             </View>

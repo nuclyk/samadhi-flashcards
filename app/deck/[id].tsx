@@ -1,14 +1,13 @@
 import { useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
 import { View, Text, StyleSheet, SafeAreaView, Pressable } from "react-native";
-import initialCards from "../../mock/cards2.json";
-import { initialDecks } from "@/mock/data";
 import { FlashList } from "@shopify/flash-list";
 import { colors } from "@/constants/Colors";
 import { Stack } from "expo-router";
 import { Link } from "expo-router";
 import { DeckModel } from "@/models/DeckModel";
 import { CardModel } from "@/models/CardModel";
+import { useDecks } from "@/context/DecksContext";
 
 let initialDeck: DeckModel = {
   id: 999,
@@ -18,6 +17,7 @@ let initialDeck: DeckModel = {
 };
 
 export default function DeckScreen() {
+  const decks = useDecks();
   const [deck, setDeck] = useState<DeckModel>(initialDeck);
   const [cards, setCards] = useState<CardModel[]>([]);
   const { id } = useLocalSearchParams();
@@ -25,7 +25,7 @@ export default function DeckScreen() {
   useEffect(() => {
     function getDeck(id: any): DeckModel {
       try {
-        return initialDecks.find((deck) => deck.id == id);
+        return decks.find((deck: DeckModel) => deck.id == id);
       } catch (error) {
         console.log(`The card with id ${id} does not exist.`);
       }
@@ -33,13 +33,8 @@ export default function DeckScreen() {
     }
 
     const deck: DeckModel = getDeck(id);
-    let fc = deck?.cards;
 
-    let list = initialCards.filter((card, index) => {
-      return fc?.includes(card.id);
-    });
-
-    setCards(list);
+    setCards(deck.cards);
     setDeck(deck);
   }, []);
 
